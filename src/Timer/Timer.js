@@ -5,18 +5,18 @@ export default function Timer(){
      const [seconds,setSeconds]=useState(0);
      const [minutes,setMinutes]=useState(0);
      const [hour,setHour]=useState(0)
-     const [toggle,setToggle]=useState(false)
+     const [isActive,setIsActive]=useState(true)
 
   let timer;
   useEffect(()=>{
     timer=setInterval(() => {
            
       setSeconds(seconds+1);
-   if(seconds==59){
+   if(seconds===59){
     setMinutes(minutes+1);
     setSeconds(0)
    }
-   if(minutes==59){
+   if(minutes===59 && seconds===59){
     setHour(hour+1)
     setMinutes(0)
    }
@@ -28,14 +28,15 @@ export default function Timer(){
   const restart=()=>{
   setMinutes(0)
   setSeconds(0)
+  setHour(0)
   }
 
-  const stop=()=>{
-    // setToggle(!toggle)  
+  const stop=()=>{  
    clearInterval(timer)
   }
   const resume =()=>{
-    timer();
+    // timer();
+     setIsActive(!isActive)
   }
 
   return (
@@ -46,8 +47,8 @@ export default function Timer(){
 
      <div className={style.button}>
       <button  className={style.btn} onClick={restart}>Reset</button>
-      <button className={style.btn} onClick={stop}>stop</button>
-      <button className={style.btn} onClick={resume}>resume</button>
+      <button className={style.btn} onClick={stop}>Pause</button>
+      <button className={style.btn} onClick={resume}>Resume</button>
       </div> 
       </div>
       </div>

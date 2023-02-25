@@ -37,6 +37,8 @@
     outline: none;
     border-radius: 5px;
     width: 3rem;
+    padding: 2px;
+    font-size: 12px;
 }
 
 .btn:hover{
